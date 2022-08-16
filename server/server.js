@@ -23,34 +23,39 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // if in production, serve client/build as static assets
-if(process.env.NODE.ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
+if (process.env.NODE.ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 // redirect all GET reqs in production to be handled by react router
 // forces react router to load instead of servingg 404 error
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, '../client/build/index.html'), function(err) {
-        if(err) {
-            res.status(500).send(err);
-        }
-    })
-})
+app.get('/*', function (req, res) {
+  res.sendFile(
+    path.join(__dirname, '../client/build/index.html'),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 // Create new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async (typeDefs, resolvers) => {
-    await server.start();
-    // Method that updates Our Express.js server to use Apollo server features
-    server.applyMiddleware({ app });
+  await server.start();
+  // Method that updates Our Express.js server to use Apollo server features
+  server.applyMiddleware({ app });
 
-    // Start the database connection
-    db.once('open', () => {
-        // start the Express server
-        app.listen(PORT, () => {
-            console.log(`API server running on port ${PORT}!`);
-            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
-        });
+  // Start the database connection
+  db.once('open', () => {
+    // start the Express server
+    app.listen(PORT, () => {
+      console.log(`API server running on port ${PORT}!`);
+      console.log(
+        `Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`
+      );
     });
+  });
 };
 
 // Call the async function to start the Apollo server
