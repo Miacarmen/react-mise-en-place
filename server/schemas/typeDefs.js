@@ -26,7 +26,7 @@ const typeDefs = gql`
     name: String!
     desc: String
     createdAt: Date
-    comepleteBy: String
+    completeBy: String
     completed: Boolean
   }
 
@@ -42,17 +42,21 @@ const typeDefs = gql`
     checklists: [Checklist]
     # one checklist by ID
     checklist(checklistId: ID!): Checklist
+    # all checked items
+    # all unchecked items
   }
 
   type Mutation {
     createUser(firstName: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     # create new checklist
-    addChecklist(title: String!): [Checklist]
+    createChecklist(title: String!): [Checklist]
     # delete checklist by ID
     deleteChecklist(checklistId: ID!): [Checklist]
     # create checklist item
     addChecklistItem(itemId: ID!, itemName: String!): [ChecklistItem]
+    # update checklist item
+    updateItem(itemId: ID, itemName: String, desc: String, completeBy: Date, completed: Boolean)
     # delete checklist item
     deleteChecklistItem(checklistId: ID!, itemId: ID!): [ChecklistItem]
     # check item as done
@@ -60,7 +64,7 @@ const typeDefs = gql`
     # uncheck item as not done
     markIncomplete(checklistId: ID!, itemId: ID!): [ChecklistItem]
     # check/uncheck all items as done
-    markAllItems(checklistId: ID!): [ChecklistItem]
+    # markAllItems(checklistId: ID!): [ChecklistItem]
   }
 `;
 
