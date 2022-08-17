@@ -1,3 +1,5 @@
+// TO-DO: on login, redirect to dashboard
+
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -55,10 +57,15 @@ export default function Login() {
             component='h1'
             variant='h3'
             align='center'
-            mt={12}
+            mt={10}
             style={{ fontWeight: 'bold' }}
           >
             Mise En Place
+          </Typography>
+          <Typography
+            sx={{ fontWeight: 'light', fontSize: 'h5.fontSize', textAlign: 'center', mt: '3px' }}
+          >
+            Put Everything in Place
           </Typography>
         </Grid>
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
