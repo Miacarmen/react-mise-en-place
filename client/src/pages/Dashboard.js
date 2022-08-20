@@ -13,16 +13,13 @@ import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
-import Button from '@mui/material/Button';
-import MenuItem from '@mui/material/MenuItem';
+// import Link from '@mui/material/Link';
+import MenuItem from '@mui/material/MenuItem'
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 import { Link } from 'react-router-dom';
-
-// import Link from '@mui/material/Link';
-// import MenuIcon from '@mui/icons-material/Menu';
-// import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-// import NotificationsIcon from '@mui/icons-material/Notifications';
-// import { mainListItems, secondaryListItems } from './listItems';
 
 const drawerWidth = 240;
 
@@ -44,44 +41,33 @@ const AppBar = styled(MuiAppBar, {
   }),
 }));
 
-const Drawer = styled(MuiDrawer, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  '& .MuiDrawer-paper': {
-    position: 'relative',
-    whiteSpace: 'nowrap',
-    width: drawerWidth,
-    transition: theme.transitions.create('width', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    boxSizing: 'border-box',
-    ...(!open && {
-      overflowX: 'hidden',
+const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
+  ({ theme, open }) => ({
+    '& .MuiDrawer-paper': {
+      position: 'relative',
+      whiteSpace: 'nowrap',
+      width: drawerWidth,
       transition: theme.transitions.create('width', {
         easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+        duration: theme.transitions.duration.enteringScreen,
       }),
-      width: theme.spacing(7),
-      [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(9),
-      },
-    }),
-  },
-}));
+      boxSizing: 'border-box',
+      ...(!open && {
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        width: theme.spacing(7),
+        [theme.breakpoints.up('sm')]: {
+          width: theme.spacing(9),
+        },
+      }),
+    },
+  }),
+);
 
 const mdTheme = createTheme();
-
-const LightButton = {
-  mt: '3px',
-  mb: '2px',
-  color: 'black',
-  backgroundColor: 'lightsalmon',
-  '&:hover': {
-    backgroundColor: 'salmon',
-  },
-};
-
 
 function DashboardContent() {
   const [open, setOpen] = React.useState(true);
@@ -93,73 +79,56 @@ function DashboardContent() {
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar
-          position='absolute'
-          open={open}
-          sx={{ backgroundColor: 'lightsalmon' }}
-        >
+        <AppBar position="absolute" open={open} style={{ backgroundColor: 'lightsalmon' }}>
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
             }}
           >
-            <Button
-              edge='start'
-              aria-label='open drawer'
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
               onClick={toggleDrawer}
               sx={{
-                color: 'black',
-                backgroundColor: 'pink',
-                '&:hover': {
-                  backgroundColor: 'salmon',
-                },
                 marginRight: '36px',
                 ...(open && { display: 'none' }),
               }}
             >
-              Open Menu
-            </Button>
+              <MenuIcon />
+            </IconButton>
             <Typography
-              component='h1'
-              variant='h6'
-              color='inherit'
+              component="h1"
+              variant="h6"
+              color="inherit"
               noWrap
               sx={{ flexGrow: 1 }}
             >
               Mise En Place
             </Typography>
-
-            {/* NOTIFICATION ICON */}
-            <IconButton color='inherit'>
-              <Badge badgeContent={4} color='secondary'>
-                {/* <NotificationsIcon /> */}
+            <IconButton color="inherit">
+              <Badge badgeContent={4} color='primary'>
+                <NotificationsIcon  />
               </Badge>
             </IconButton>
           </Toolbar>
         </AppBar>
-
-        {/* DRAWER */}
-        <Drawer
-          variant='permanent'
-          open={open}
-        >
+        <Drawer variant="permanent" open={open}>
           <Toolbar
             sx={{
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'flex-end',
               px: [1],
-              backgroundColor: 'pink',
             }}
           >
-            {/* TO-DO: onClick change nav links to icons */}
-            <Button onClick={toggleDrawer} sx={LightButton}>
-              Close Menu
-            </Button>
+            <IconButton onClick={toggleDrawer}>
+              <ChevronLeftIcon />
+            </IconButton>
           </Toolbar>
           <Divider />
 
-          {/* NAV MENU */}
+          {/* Nav Menu */}
           <List component='nav'>
             <Link to='/' style={{ textDecoration: 'none' }}>
               <MenuItem style={{ paddingLeft: 10, color: 'black' }}>Home</MenuItem>
@@ -177,13 +146,18 @@ function DashboardContent() {
               <MenuItem style={{ paddingLeft: 10, color: 'black' }}>Checklist</MenuItem>
             </Link>
             <Divider sx={{ my: 1 }} />
+            <Link to='/Account' style={{ textDecoration: 'none' }}>
+              <MenuItem style={{ paddingLeft: 10, color: 'black' }}>Account</MenuItem>
+            </Link>
+            <Divider sx={{ my: 1 }} />
             <Link to='/Logout' style={{ textDecoration: 'none' }}>
               <MenuItem style={{ paddingLeft: 10, color: 'black' }}>Logout</MenuItem>
             </Link>
           </List>
         </Drawer>
+
         <Box
-          component='main'
+          component="main"
           sx={{
             backgroundColor: (theme) =>
               theme.palette.mode === 'light'
@@ -203,14 +177,14 @@ function DashboardContent() {
               textAlign: 'center',
               mt: '20px',
               color: 'gray',
+              mb: '4px'
             }}
           >
             Dashboard
           </Typography>
-          <Container maxWidth='lg' sx={{ mt: 4, mb: 4 }}>
+          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Grid container spacing={3}>
-
-              {/* CALENDAR */}
+              
               <Grid item xs={12} md={8} lg={9}>
                 <Paper
                   sx={{
@@ -220,11 +194,10 @@ function DashboardContent() {
                     height: 240,
                   }}
                 >
-                  Calendar
+                 Calendar
                 </Paper>
               </Grid>
-
-              {/* UPCOMING TO-DOS */}
+             
               <Grid item xs={12} md={4} lg={3}>
                 <Paper
                   sx={{
@@ -234,17 +207,17 @@ function DashboardContent() {
                     height: 240,
                   }}
                 >
-                  Upcoming To-Dos
+                  Upcoming
                 </Paper>
               </Grid>
-
-              {/* CHECKLISTS */}
+             
               <Grid item xs={12}>
                 <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
                   Checklists
                 </Paper>
               </Grid>
             </Grid>
+            
           </Container>
         </Box>
       </Box>
