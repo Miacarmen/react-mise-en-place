@@ -63,7 +63,12 @@ export default function Login() {
             Mise En Place
           </Typography>
           <Typography
-            sx={{ fontWeight: 'light', fontSize: 'h5.fontSize', textAlign: 'center', mt: '3px' }}
+            sx={{
+              fontWeight: 'light',
+              fontSize: 'h5.fontSize',
+              textAlign: 'center',
+              mt: '3px',
+            }}
           >
             Put Everything in Place
           </Typography>
