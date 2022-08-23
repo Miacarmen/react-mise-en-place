@@ -8,6 +8,7 @@ import Grid from '@mui/material/Grid';
 
 // Components
 import NavMenu from '../Navbar/Navigation';
+import NavDrawer from '../Navbar/NavDrawer';
 
 const mdTheme = createTheme();
 
@@ -18,7 +19,7 @@ function WrapperContent() {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         
-        <NavMenu />
+        <NavDrawer />
 
         <Box
           component='main'

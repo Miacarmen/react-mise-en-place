@@ -16,6 +16,11 @@ import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import PersonIcon from '@mui/icons-material/Person';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import ListAltIcon from '@mui/icons-material/ListAlt';
+import LogoutIcon from '@mui/icons-material/Logout';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 
 import { Link } from 'react-router-dom';
@@ -130,30 +135,89 @@ export default function NavMenu() {
         {/* Nav Menu */}
         <List component='nav'>
           <Link to='/Account' style={{ textDecoration: 'none' }}>
-            <MenuItem style={{ paddingLeft: 10, color: 'black' }}>
+          <IconButton
+            edge='start'
+            color='inherit'
+            aria-label='open drawer'
+            sx={{
+              marginRight: '36px',
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <PersonIcon />
+          </IconButton>
+            <MenuItem style={{ paddingLeft: 10, color: 'black' }} >
               Account
             </MenuItem>
           </Link>
           <Divider sx={{ my: 1 }} />
+
           <Link to='/Dashboard' style={{ textDecoration: 'none' }}>
+          <IconButton
+            edge='start'
+            color='inherit'
+            aria-label='open drawer'
+            sx={{
+              marginRight: '36px',
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <DashboardIcon />
+          </IconButton>
             <MenuItem style={{ paddingLeft: 10, color: 'black' }}>
               Dashboard
             </MenuItem>
           </Link>
           <Divider sx={{ my: 1 }} />
+
           <Link to='/Calendar' style={{ textDecoration: 'none' }}>
-            <MenuItem style={{ paddingLeft: 10, color: 'black' }}>
+          <IconButton
+            edge='start'
+            color='inherit'
+            aria-label='open drawer'
+            sx={{
+              marginRight: '36px',
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <CalendarMonthIcon />
+          </IconButton>
+            <MenuItem style={{ paddingLeft: 10, color: 'black' }} >
               Calendar
             </MenuItem>
           </Link>
           <Divider sx={{ my: 1 }} />
+
           <Link to='/Checklist' style={{ textDecoration: 'none' }}>
+          <IconButton
+            edge='start'
+            color='inherit'
+            aria-label='open drawer'
+            sx={{
+              marginRight: '36px',
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <ListAltIcon />
+          </IconButton>
             <MenuItem style={{ paddingLeft: 10, color: 'black' }}>
-              Checklist
+              Checklists
             </MenuItem>
           </Link>
           <Divider sx={{ my: 1 }} />
+
           <Link to='/' style={{ textDecoration: 'none' }}>
+          <IconButton
+            edge='start'
+            color='inherit'
+            aria-label='open drawer'
+            sx={{
+              marginRight: '36px',
+              ...(open && { display: 'none' }),
+            }}
+          >
+            <LogoutIcon />
+          </IconButton>
             <MenuItem style={{ paddingLeft: 10, color: 'black' }}>
               Logout
             </MenuItem>
