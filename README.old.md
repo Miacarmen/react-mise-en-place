@@ -49,6 +49,7 @@ Previous Time Management Software project; recreated with React and Redux
 
 ## Dependencies
 - [bcrypt]()
+- [dotenv]()
 - [concurrently]()
 - [jsonwebtoken]()
 - [jwt-decode]()
